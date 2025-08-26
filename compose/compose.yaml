@@ -86,7 +86,7 @@ services:
       - "cluster.routing.allocation.disk.threshold_enabled=false"
       - "index.blocks.read_only_allow_delete"
       ## Uncomment to set custom heap size to avoid memory errors
-      #- "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g"
       ## Uncomment to increase the virtual memory map count
       #- "max_map_count=262144"                                                                             
    ulimits:
@@ -96,6 +96,14 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+        reservations:
+          memory: 1g
+        
+  
 
 
   ## If you wish to use Elasticsearch, comment out opensearch image above and
